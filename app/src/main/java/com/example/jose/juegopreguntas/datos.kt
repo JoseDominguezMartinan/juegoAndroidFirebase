@@ -7,7 +7,7 @@ import java.util.*
  * Contiene un HashMap con los datos, ya que las funciones que utilizaré necesitan como parámetro
  * un HashMap
  */
-data class Datos(var token: String = "", var dispositivo: String = "", var acierto: String) {
+data class Datos(var token: String = "", var dispositivo: String = "") {
     // contenedor para actualizar los datos
     val miHashMapDatos = HashMap<String, Any>()
 
@@ -17,7 +17,7 @@ data class Datos(var token: String = "", var dispositivo: String = "", var acier
     fun crearHashMapDatos() {
         miHashMapDatos.put("token", token)
         miHashMapDatos.put("dispositivo", dispositivo)
-        miHashMapDatos.put("acierto",acierto)
+
 
     }
 }

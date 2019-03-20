@@ -8,32 +8,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.juegopreguntas.R
-import kotlinx.android.synthetic.main.fragment_responder_pregunta.*
-import kotlinx.android.synthetic.main.fragment_responder_pregunta.view.*
+import kotlinx.android.synthetic.main.fragment_enviar_preguntas.*
+import kotlinx.android.synthetic.main.fragment_recibir_preguntas.*
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_recibir_preguntas.view.*
 
 
-
-
-
-
+// TODO: Rename parameter arguments, choose names that match
+// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+//private const val ARG_PARAM1 = "param1"
+//private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
  * Activities that contain this fragment must implement the
- * [ResponderPregunta.OnFragmentInteractionListener] interface
+ * [recibir_preguntas.OnFragmentInteractionListener] interface
  * to handle interaction events.
- * Use the [ResponderPregunta.newInstance] factory method to
+ * Use the [recibir_preguntas.newInstance] factory method to
  * create an instance of this fragment.
  *
  */
-class ResponderPregunta : Fragment() {
+class recibir_preguntas : Fragment() {
     // TODO: Rename and change types of parameters
 
     private var listener: OnFragmentInteractionListener? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
 
 
     }
@@ -41,23 +43,14 @@ class ResponderPregunta : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        var vista = inflater.inflate(R.layout.fragment_responder_pregunta, container, false)
-        vista.botonNo.setOnClickListener(){
-            botonNo.setButtonDrawable(R.drawable.no_marcado)
-            botonSi.setButtonDrawable(R.drawable.si)
-            (activity as VistaUsuario).setVariable("no")
-        }
-        vista.botonSi.setOnClickListener(){
-            botonSi.setButtonDrawable(R.drawable.si_marcado)
-            botonNo.setButtonDrawable(R.drawable.no)
-            (activity as VistaUsuario).setVariable("si")
-        }
-
+        // este paso es necesario para la comunicacion fragment activity
+        var vista= inflater.inflate(R.layout.fragment_recibir_preguntas, container, false)
+        vista.respuestasPreguntas.setText((activity as VistaUsuario).respuestaRecibir)
+        vista.anteriorPregunta.setText((activity as VistaUsuario).preguntaEnviar)
         return vista
-
-
-
     }
+
+
 
     // TODO: Rename method, update argument and hook method into UI event
     fun onButtonPressed(uri: Uri) {
@@ -101,13 +94,15 @@ class ResponderPregunta : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ResponderPregunta.
+         * @return A new instance of fragment recibir_preguntas.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance() =
-                ResponderPregunta().apply {
+                recibir_preguntas().apply {
+                    arguments = Bundle().apply {
 
+                    }
                 }
     }
 }
